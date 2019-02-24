@@ -14,6 +14,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/management', 'HomeController@index')->name('home');
+Route::get('/management-add', 'HomeController@index')->name('home');
 Route::get('invoice', function(){
     return view('invoice');
 });

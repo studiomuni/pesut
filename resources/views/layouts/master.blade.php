@@ -110,10 +110,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
          </li>
          @endcan
           <li class="nav-item">
-                <router-link to="/profile" class="nav-link">
+                <router-link to="/management" class="nav-link">
                     <i class="nav-icon fas fa fa-list-ul orange"></i>
                     <p>
                         Management
+                    </p>
+                </router-link>
+         </li>
+
+         <li class="nav-item">
+                <router-link to="/galeri" class="nav-link">
+                    <i class="nav-icon fas fa fa-image green"></i>
+                    <p>
+                        Galeri
                     </p>
                 </router-link>
          </li>

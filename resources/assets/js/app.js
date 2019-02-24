@@ -62,9 +62,11 @@ let routes = [
     { path: '/users', component: require('./components/Users.vue').default },
     { path: '/profile', component: require('./components/Profile.vue').default },
     { path: '/management', component: require('./components/Management.vue').default },
+    { path: '/management-add', component: require('./components/ManagementAdd.vue').default },
+    { path: '/galeri', component: require('./components/Galeri.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default }
   ]
-
+  
 const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`
@@ -92,6 +94,9 @@ window.Fire =  new Vue();
 Vue.component('contact-form', require('./components/Massage.vue'));
 
 Vue.component('contact-form', require('./components/Management.vue'));
+
+Vue.component('galeri', require('./components/Galeri.vue'));
+
 
 Vue.component(
     'passport-clients',
