@@ -48,7 +48,12 @@
               </div>
               <div class="form-group">
                 <label>Foto</label>
-                <input v-model="state.images" type="text" name="message" class="form-control">
+                  <select v-model="state.images" class="form-control">
+                  <option disabled value="">Please select one</option>
+                   <option v-for="f in foto" :key="f.id" v-bind:value="originUrl + f.path">
+                      {{ f.name }}
+                  </option>
+                </select>
               </div>
               <div class="form-group">
                 <button class="btn btn-primary" type="submit">
@@ -68,6 +73,8 @@
     data() {
       return {
         options: [],
+        foto: [],
+        originUrl:[],
         success: false,
         state: {
           name: '',
@@ -82,8 +89,14 @@
       mounted(){
       axios.get('/api/getCategories').then(response => {
       this.options = response.data
-      console.log(this.options)
     })    
+
+      axios.get('/api/getUpload').then(response => {
+      this.foto = response.data
+    }) 
+
+    this.originUrl = window.location.origin
+
     },
     methods: {
       simpan(e) {

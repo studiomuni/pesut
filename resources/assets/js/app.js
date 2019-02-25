@@ -64,6 +64,8 @@ let routes = [
     { path: '/management', component: require('./components/Management.vue').default },
     { path: '/management-add', component: require('./components/ManagementAdd.vue').default },
     { path: '/galeri', component: require('./components/Galeri.vue').default },
+    { path: '/kategori', component: require('./components/Kategori.vue').default },
+    { path: '/kategori-add', component: require('./components/KategoriAdd.vue').default },
     { path: '*', component: require('./components/NotFound.vue').default }
   ]
   

@@ -15,9 +15,20 @@ Route::get('/profile', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'HomeController@index')->name('home');
 Route::get('/management', 'HomeController@index')->name('home');
 Route::get('/management-add', 'HomeController@index')->name('home');
+Route::get('/galeri', 'HomeController@index')->name('home');
+Route::get('/kategori', 'HomeController@index')->name('home');
+Route::get('/kategori-add', 'HomeController@index')->name('home');
 Route::get('invoice', function(){
     return view('invoice');
 });
+
+Route::get('/upload', function () {
+    return view('upload');
+});
+
+//images
+Route::post('upload', 'UploadController@upload');
+Route::get('/api/getUpload', 'UploadController@getAllData');
 
 // Route::get('{path}',"HomeController@index")->where( 'path', '([A-z\d-\/_.]+)?' );
 
@@ -30,3 +41,8 @@ Route::get('/api/getData/{id}', 'WoocomerceController@getData');
 Route::get('/api/delete/{id}', 'WoocomerceController@deleteData');
 Route::get('/api/getCategories', 'WoocomerceController@getCategories');
 Route::post('saveProduct', 'WoocomerceController@saveProduct')->name('contact.send');
+Route::post('saveKategori', 'WoocomerceController@saveKategori')->name('contact.send');
+Route::get('/api/getDataCategori/{id}', 'WoocomerceController@getDataCategori');
+Route::get('/api/deleteCategori/{id}', 'WoocomerceController@deleteCategori');
+
+

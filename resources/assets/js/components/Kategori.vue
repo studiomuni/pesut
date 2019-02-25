@@ -7,22 +7,20 @@
             <div class="col-md-6"></div>
             <div class="col-md-5"></div>
             <div class="col-md-1" align="right">
-              <a href="/upload">
+              <router-link to="/kategori-add">
                 <button class="btn btn-default"><span class="fa fa-plus "></span></button>
-              </a>
+              </router-link>
             </div>
           </div>
           <table id="customers">
              <tr>
-                <th>Name</th>
-                <th>Deskripsi</th>
-                <th>Foto</th>
+                <th>Nama Kategori</th>
+                <th>Slug</th>
                 <th>Action</th>
               </tr>
               <tr v-for="(item, index) in data" :key="index">             
                 <td>{{item.name}}</td>
-                <td>{{item.description}}</td>
-                <td width="20%"><img v-bind:src="item.path"  width="240" height="160"></td>
+                <td>{{item.slug}}</td>
                 <td> <button v-b-modal.modal1 v-on:click="open(item.id)" class="btn btn-danger"><span class="fa fa-trash-alt"></span></button></td>
               </tr>
           </table>
@@ -31,7 +29,10 @@
       <div>
         <!-- Modal Component -->
         <b-modal id="modal1" title="Hapus Data">
-          <p class="my-4">Apakah Anda Yakin Akan Menghapus?</p>
+          <p class="my-4">Apakah Anda Yakin Akan Menghapus? {{getNama}}</p>
+        <div slot="modal-footer">
+          <b-button size="10px" class="float-right" variant="success" v-on:click="hapus(getId)" :disabled="getId==''">Ok</b-button> 
+        </div>
         </b-modal>
       </div>
   </div>
@@ -45,17 +46,27 @@ export default {
   data(){
     return{
       data: [],
+      getId: [],
+      getNama: []
     }
   },
   mounted(){
-      axios.get('/api/getUpload').then(response => {
+      axios.get('/api/getCategories').then(response => {
       this.data = response.data
-      console.log(this.data)
     })    
   },
     methods: {
+
     open(id) {
-      axios.get(`/api/delete/${id}`);  
+      axios.get(`/api/getDataCategori/${id}`).then(response => {
+        this.getId = response.data.id
+        this.getNama = response.data.name
+    })    
+
+    },
+     hapus(id) {
+     axios.get(`/api/deleteCategori/${id}`);  
+     location.reload();
     }
   }
 }
