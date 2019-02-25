@@ -28,3 +28,5 @@ Route::post('send', 'MessageController@send')->name('contact.send');
 Route::get('/api/getAllData', 'WoocomerceController@getAllData');
 Route::get('/api/getData/{id}', 'WoocomerceController@getData');
 Route::get('/api/delete/{id}', 'WoocomerceController@deleteData');
+Route::get('/api/getCategories', 'WoocomerceController@getCategories');
+Route::post('saveProduct', 'WoocomerceController@saveProduct')->name('contact.send');

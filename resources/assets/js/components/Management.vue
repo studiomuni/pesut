@@ -6,7 +6,11 @@
           <div class="row">
             <div class="col-md-6"></div>
             <div class="col-md-5"></div>
-            <div class="col-md-1" align="right"> <button class="btn btn-default"><span class="fa fa-plus "></span></button></div>
+            <div class="col-md-1" align="right">
+              <router-link to="/management-add">
+                <button class="btn btn-default"><span class="fa fa-plus "></span></button>
+              </router-link>
+            </div>
           </div>
           <table id="customers">
              <tr>
@@ -29,7 +33,7 @@
       <div>
         <!-- Modal Component -->
         <b-modal id="modal1" title="Hapus Data">
-          <p class="my-4">Apakah Anfda Yakin Akan Menghapus? {{getNama}}</p>
+          <p class="my-4">Apakah Anda Yakin Akan Menghapus? {{getNama}}</p>
         <div slot="modal-footer">
           <b-button size="10px" class="float-right" variant="success" v-on:click="hapus(getId)" :disabled="getId==''">Ok</b-button> 
         </div>

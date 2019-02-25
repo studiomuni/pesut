@@ -17,7 +17,7 @@
       <div class="card">
         <div class="card-body">
           <div class="tab-content">
-            <form @submit.prevent="simpan" method="post">
+            <form @submit.prevent="simpan" method="post" action="/saveProduct">
               <div v-if="success" class="alert alert-success">
                 Terima kasih. Pesan berhasil dikirim.
               </div>
@@ -26,16 +26,33 @@
                 <input v-model="state.name" type="text" name="name" class="form-control">
               </div>
               <div class="form-group">
-                <label>Email</label>
-                <input v-model="state.email" type="text" name="email" class="form-control">
+                <label>Harga</label>
+                <input v-model="state.regular_price" type="number" name="message" class="form-control">
+              </div>
+                 <div class="form-group">
+                <label>Deskripsi</label>
+                <textarea v-model="state.description" name="message" class="form-control"></textarea>
               </div>
               <div class="form-group">
-                <label>Pesan</label>
-                <textarea v-model="state.message" name="message" class="form-control"></textarea>
+                <label>Short Description</label>
+                <input v-model="state.short_description" type="text" name="message" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Kategori</label>
+                <select v-model="state.categories" class="form-control">
+                  <option disabled value="">Please select one</option>
+                   <option v-for="option in options" :key="option.id" v-bind:value="option.id">
+                      {{ option.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Foto</label>
+                <input v-model="state.images" type="text" name="message" class="form-control">
               </div>
               <div class="form-group">
                 <button class="btn btn-primary" type="submit">
-                  Kirim Pesan
+                  Submit
                 </button>
               </div>
             </form>   
@@ -50,17 +67,45 @@
   export default {
     data() {
       return {
+        options: [],
         success: false,
         state: {
           name: '',
-          email: '',
-          message: ''
+          regular_price: '',
+          description: '',
+          short_description: '',
+          categories: '',
+          images:''
         }
       }
     },
+      mounted(){
+      axios.get('/api/getCategories').then(response => {
+      this.options = response.data
+      console.log(this.options)
+    })    
+    },
     methods: {
       simpan(e) {
-       console.log(e)
+          axios.post(e.target.action, this.state).then(response => {
+          this.success = response.data.success;
+          
+          if(response.data.success == true) {
+            this.errors = [];
+            this.state = {
+                name: '',
+                regular_price: '',
+                description: '',
+                short_description: '',
+                categories: '',
+                images:''
+            }
+          }
+        }).catch(error => {
+          if (error.response.status == 422) {
+            this.errors = error.response.data;
+          }
+        })
       }
     }
   }
