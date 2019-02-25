@@ -11,7 +11,7 @@
  Target Server Version : 100138
  File Encoding         : 65001
 
- Date: 24/02/2019 17:19:52
+ Date: 26/02/2019 01:46:18
 */
 
 SET NAMES utf8mb4;
@@ -161,7 +161,13 @@ CREATE TABLE `upload`  (
   `created_at` datetime(0) NULL DEFAULT NULL,
   `updated_at` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of upload
+-- ----------------------------
+INSERT INTO `upload` VALUES (6, 'a', 'a', '/uploads/2000000001.jpg', '2019-02-25 11:02:27', '2019-02-25 11:02:27');
+INSERT INTO `upload` VALUES (7, 'bb', 'bb', '/uploads/a.jpg', '2019-02-25 11:06:47', '2019-02-25 11:06:47');
 
 -- ----------------------------
 -- Table structure for users
@@ -179,11 +185,5 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of users
--- ----------------------------
-INSERT INTO `users` VALUES (1, 'admin', 'admin@gmail.com', NULL, '$2y$10$MbgfBUyD4FTKSMh7AFhNBOQuOt8oJAaW0aXtjeKL74xgQvS7s2iwe', 'rE5Xnvu6eyeG4JTCy5Kq7aypnMha4ns4qa15bfipj60m6cAo1XxF9UlOAGLd', '2019-02-21 11:49:11', '2019-02-21 11:49:11');
-INSERT INTO `users` VALUES (2, 'admin', 'admin1@gmail.com', NULL, '$2y$10$wYWVDzdQgdbQlDTulbQNQ.Oco3mapL9WD4NX0v2dTlAokJz/DbnYS', 'mDH6o5dnnvyPqbclqTWuU7166nsiT7rxG0NAy0Jz8zjUVg0gfSVwA82WSSND', '2019-02-21 12:44:06', '2019-02-21 12:44:06');
 
 SET FOREIGN_KEY_CHECKS = 1;
